@@ -69,7 +69,8 @@ body {
 
 .number,
 .clear,
-.operation {
+.operator,
+.equal {
   background: var(--numbers);
   outline: none;
   border: none;
@@ -79,6 +80,7 @@ body {
   color: var(--highlight);
   border-radius: 50%;
   font-size: 24px;
+  cursor: pointer;
 }
 
 footer {
