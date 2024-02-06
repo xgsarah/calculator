@@ -55,6 +55,15 @@ body {
   padding: 10px;
 }
 
+.expression {
+  height: 40%;
+  font-size: 20px;
+}
+
+.total {
+  height: 60%;
+}
+
 .keys {
   display: flex;
 }
