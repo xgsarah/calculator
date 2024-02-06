@@ -1,4 +1,5 @@
 let num1, num2, operator;
+let display = 0;
 
 function add(arrNum) {
   return arrNum.reduce((prev, curr) => prev + curr, 0);
@@ -30,3 +31,21 @@ function operate(num1, num2, operator) {
       return 0;
   }
 }
+
+function populateDisplay(str) {
+  display = str;
+  const displayDiv = document.querySelector('.display');
+  displayDiv.innerText = display;
+}
+
+function handleNumberButtons() {
+  const numElements = document.querySelectorAll('.number');
+  numElements.forEach((el) =>
+    el.addEventListener('click', (e) => {
+      const value = e.target.innerText;
+      populateDisplay(value);
+    })
+  );
+}
+
+handleNumberButtons();
