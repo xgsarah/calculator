@@ -1,5 +1,4 @@
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const operators = ['add', 'subtract', 'multiply', 'divide'];
+let num1, num2, operator;
 
 function add(arrNum) {
   return arrNum.reduce((prev, curr) => prev + curr, 0);
@@ -19,13 +18,13 @@ function divide(arrNum) {
 
 function operate(num1, num2, operator) {
   switch (operator) {
-    case operators[0]:
+    case '+':
       return add([num1, num2]);
-    case operators[1]:
+    case '-':
       return subtract([num1, num2]);
-    case operators[2]:
+    case '*':
       return multiply([num1, num2]);
-    case operators[3]:
+    case '/':
       return divide([num1, num2]);
     default:
       return 0;
