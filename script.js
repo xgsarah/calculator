@@ -1,7 +1,8 @@
-let num1 = 0;
-let num2 = 0;
+let num1 = null;
+let num2 = null;
 let operator = null;
-let display = 0;
+let display = null;
+let expression = null;
 
 function add(arrNum) {
   return arrNum.reduce((prev, curr) => prev + curr, 0);
@@ -19,7 +20,7 @@ function divide(arrNum) {
   return arrNum.reduce((prev, curr) => prev / curr);
 }
 
-function operate(num1, num2, operator) {
+function operate(num1 = 0, num2 = 0, operator) {
   const x = Number(num1);
   const y = Number(num2);
 
@@ -37,10 +38,21 @@ function operate(num1, num2, operator) {
   }
 }
 
+function populateExpression() {
+  expression = `${num1 !== null ? num1 : ''} ${operator ? operator : ''} ${
+    num2 ? num2 : ''
+  } ${num1 && num2 && operator ? '=' : ''}`;
+
+  const expressionDiv = document.querySelector('.expression');
+  expressionDiv.innerText = expression;
+}
+
 function populateDisplay(value) {
+  populateExpression();
+
   display = display ? (display += value) : value;
 
-  const displayDiv = document.querySelector('.display');
+  const displayDiv = document.querySelector('.total');
   displayDiv.innerText = display;
 }
 
@@ -48,9 +60,21 @@ function handleOperationButtons() {
   const operatorElements = document.querySelectorAll('.operator');
   operatorElements.forEach((el) =>
     el.addEventListener('click', (e) => {
-      operator = e.target.innerText;
+      if (num1 === null) {
+        num1 = display;
+      } else {
+        num2 = display;
+      }
 
-      num1 = display;
+      if (operator) {
+        display = 0;
+        const result = operate(num1, num2, operator);
+        num1 = result;
+        num2 = null;
+        populateDisplay(result);
+      }
+
+      operator = e.target.innerText;
       display = 0;
     })
   );
@@ -61,7 +85,7 @@ function handleEqualButton() {
   equalButton.addEventListener('click', (e) => {
     if (num1) {
       num2 = display;
-    } else {
+    } else if (num1 === null || num2 === null) {
       num1 = display;
     }
 
@@ -75,8 +99,8 @@ function handleClearButton() {
   const clearButton = document.querySelector('.clear');
   clearButton.addEventListener('click', (e) => {
     display = 0;
-    num1 = 0;
-    num2 = 0;
+    num1 = null;
+    num2 = null;
     operator = null;
     populateDisplay(0);
   });
@@ -86,6 +110,12 @@ function handleNumberButtons() {
   const numElements = document.querySelectorAll('.number');
   numElements.forEach((el) =>
     el.addEventListener('click', (e) => {
+      if (num1 !== null && num2 !== null && operator !== null) {
+        num1 = null;
+        num2 = null;
+        operator = null;
+        display = 0;
+      }
       const value = e.target.innerText;
       populateDisplay(value);
     })
