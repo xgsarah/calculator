@@ -1,23 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg: #ffc5c5;
-  --calc: #89b9ad;
-  --text: #ffebd8;
-  --highlight: #c7dca7;
-  --numbers: #99b080;
+  --bg: #d1a4a4;
+  --calc: #084435;
+  --text: #449281;
+  --highlight: #d16221;
+  --numbers: #b3c59f;
   --display: #faf8ed;
 }
 
 * {
-  outline: 1px dotted red;
+  /* outline: 1px dotted red; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background: var(--bg);
+  background-image: linear-gradient(
+    to bottom,
+    #ffc5c5,
+    #ffd3c6,
+    #fce0ce,
+    #f9eddc,
+    #faf8ed
+  );
+  height: 100vh;
   color: var(--text);
   font-family: 'Quicksand', sans-serif;
   font-size: 12px;
@@ -34,20 +42,21 @@ body {
 
 .calculator {
   background: var(--calc);
-  width: 400px;
+  width: 350px;
   border-radius: 10px;
-  height: 600px;
+  height: 500px;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
+  padding: 0 25px;
 }
 
 .display {
   background: var(--display);
-  color: var(--numbers);
+  color: var(--highlight);
   font-size: 32px;
   width: 100%;
   height: 100px;
@@ -66,13 +75,15 @@ body {
 
 .keys {
   display: flex;
+  justify-content: space-between;
 }
 
 .numbers,
 .operations {
   display: flex;
-  justify-content: space-evenly;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
   flex-wrap: wrap;
 }
 
@@ -83,16 +94,37 @@ body {
   background: var(--numbers);
   outline: none;
   border: none;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
 
-  color: var(--highlight);
+  color: var(--text);
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
+}
+
+.highlight {
+  background: var(--highlight);
+  color: var(--display);
+}
+
+.operator,
+.clear {
+  color: var(--display);
+  background: var(--bg);
 }
 
 footer {
   text-align: center;
-  color: #3a4d39;
+  font-size: 12px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #515153;
+}
+
+footer a {
+  color: #515153;
 }
